@@ -193,3 +193,37 @@ topBtn.addEventListener("click", () => {
     });
 
 });
+// Pay Now Button
+const payBtn = document.getElementById("payBtn");
+
+if (payBtn) {
+  payBtn.addEventListener("click", async () => {
+    try {
+      const response = await fetch("/api/create-order", {
+        method: "POST"
+      });
+
+      const order = await response.json();
+
+      const options = {
+        key: "YOUR_RAZORPAY_KEY_ID",
+        amount: order.amount,
+        currency: order.currency,
+        name: "Suman",
+        description: "Website Development Payment",
+        order_id: order.id,
+        handler: function (response) {
+          alert("Payment Successful!");
+          console.log(response);
+        }
+      };
+
+      const rzp = new Razorpay(options);
+      rzp.open();
+
+    } catch (err) {
+      alert("Payment failed.");
+      console.error(err);
+    }
+  });
+    }
