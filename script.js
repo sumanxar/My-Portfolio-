@@ -200,13 +200,19 @@ if (payBtn) {
   payBtn.addEventListener("click", async () => {
     try {
       const response = await fetch("/api/create-order", {
-        method: "POST"
-      });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    amount: 1000
+  })
+});
 
       const order = await response.json();
 
       const options = {
-        key: "rzp_live_TK5Ba9jhlcy3Cx",
+        key: rzp_live_TK5Ba9jhlcy3Cx
         amount: order.amount,
         currency: order.currency,
         name: "Suman",
