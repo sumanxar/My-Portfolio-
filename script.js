@@ -206,7 +206,7 @@ if (payBtn) {
       const order = await response.json();
 
       const options = {
-        key: "YOUR_RAZORPAY_KEY_ID",
+        key: "rzp_live_TK5Ba9jhlcy3Cx",
         amount: order.amount,
         currency: order.currency,
         name: "Suman",
